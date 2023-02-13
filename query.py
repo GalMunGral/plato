@@ -58,5 +58,4 @@ if __name__ == '__main__':
         sys.stdout.write('\r'.ljust(100) + '\n')
 
         for score, url in sorted(results)[:20]:
-            padding = ' ' * (100 - len(url))
-            print(f'{url}{padding}(score:{score})')
+            print(f'{url} ({round(score, 4)})')
