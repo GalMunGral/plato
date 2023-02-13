@@ -86,7 +86,10 @@ def build_unigram(
 
 def build_unigrams() -> None:
     vocab = load_id_map('vocab.txt')
+
     ref = build_unigram('.cache/ref.dat', vocab, [0.0] * len(vocab))
+    with open('model/ref.dat', 'w') as f:
+        f.write(''.join([repr(p).ljust(22) for p in ref]))
 
     for i, (url, id) in enumerate(doc_ids.items()):
         unigram = build_unigram(f'.cache/{doc_ids[url]}.dat', vocab, ref)
@@ -99,4 +102,5 @@ def build_unigrams() -> None:
 if __name__ == "__main__":
     # build_stats()
     # build_vocab()
-    build_unigrams()
+    # build_unigrams()
+    pass
