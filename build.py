@@ -20,14 +20,14 @@ def build_stats():
         for word in doc_counter:
             rev_index[word].append(url)
 
-        with open(f'.cache/{doc_ids[url]}.dat', 'w') as f:
+        with open(f'.cache/{doc_ids[url]}', 'w') as f:
             for word, freq in sorted(doc_counter.items()):
                 f.write(f'{word}:{freq}\n')
 
         sys.stdout.write(f'\r[{i}] term freq: {url}'.ljust(120))
 
     unk_freq = 0
-    with open('.cache/ref.dat', 'w') as f:
+    with open('.cache/ref', 'w') as f:
         for word, freq in sorted(ref_counter.items()):
             if freq < 10:
                 unk_freq += freq
@@ -43,7 +43,7 @@ def build_stats():
 
 def build_vocab():
     vocab = []
-    with open('.cache/ref.dat') as f:
+    with open('.cache/ref') as f:
         while line := f.readline().strip():
             word, _ = line.split(':')
             vocab.append(word)
@@ -83,14 +83,14 @@ def build_unigram(
 def build_unigrams() -> None:
     vocab = load_id_map('vocab.txt')
 
-    ref = build_unigram('.cache/ref.dat', vocab, [0.0] * len(vocab))
-    with open('model/ref.dat', 'wb') as f:
+    ref = build_unigram('.cache/ref', vocab, [0.0] * len(vocab))
+    with open('model/ref', 'wb') as f:
         for p in ref:
             f.write(struct.pack('d', p))
 
     for i, (url, id) in enumerate(doc_ids.items()):
-        unigram = build_unigram(f'.cache/{doc_ids[url]}.dat', vocab, ref)
-        with open(f'model/{id}.dat', 'wb') as f:
+        unigram = build_unigram(f'.cache/{doc_ids[url]}', vocab, ref)
+        with open(f'model/{id}', 'wb') as f:
             for p in unigram:
                 f.write(struct.pack('d', p))
         sys.stdout.write(f'\r[{i}] unigram: {url}'.ljust(120))
@@ -98,6 +98,6 @@ def build_unigrams() -> None:
 
 
 if __name__ == "__main__":
-    # build_stats()
+    build_stats()
     build_vocab()
     build_unigrams()

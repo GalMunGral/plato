@@ -15,7 +15,7 @@ def rank_doc(
     query: Counter[str],
 ) -> float:
     cross_entropy = 0.0
-    with open(f'model/{doc_ids[url]}.dat', 'rb') as f:
+    with open(f'model/{doc_ids[url]}', 'rb') as f:
         for word, count in query.items():
             f.seek(word_ids[word] * 8)
             (p,) = struct.unpack('d', f.read(8))

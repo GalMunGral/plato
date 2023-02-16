@@ -381,7 +381,6 @@ addresses
 adduce
 adeimantus
 adele
-adell
 adenine
 adept
 adequacy
@@ -8924,6 +8923,7 @@ disabled
 disadvantage
 disadvantaged
 disadvantageous
+disaffection
 disaggregate
 disagree
 disagreeable
@@ -13615,7 +13615,6 @@ gillon
 gilman
 gilmore
 gilpin
-gilroy
 gilson
 gimmicky
 gin
@@ -18188,6 +18187,7 @@ kalar
 kalbfleisch
 kalderon
 kaldor
+kaleidoscopic
 kalinowski
 kallen
 kallestrup
@@ -20552,6 +20552,7 @@ malaria
 malaterre
 malcolm
 malden
+maldonado
 male
 malebranche
 malebranchean
@@ -30074,6 +30075,7 @@ sartor
 sartorio
 sartorius
 sartre
+sartrean
 sartwell
 sarvāstivāda
 sarvāstivādin
