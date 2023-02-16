@@ -1,10 +1,6 @@
-import os, gzip, json, sys, nltk
+import os, gzip, json, sys, struct
 from collections import Counter, defaultdict
-from utils import load_id_map, get_tokens, normalize_tokens
-
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
+from utils import load_id_map, read_tokens
 
 required_dirs = ['.cache', 'model']
 for dir in required_dirs:
@@ -18,21 +14,21 @@ def build_stats():
     ref_counter = Counter()
 
     for i, url in enumerate(doc_ids):
-        words = normalize_tokens(get_tokens(url))
+        words = read_tokens(url)
         doc_counter = Counter(words)
         ref_counter.update(words)
         for word in doc_counter:
             rev_index[word].append(url)
 
         with open(f'.cache/{doc_ids[url]}.dat', 'w') as f:
-            for word, freq in doc_counter.items():
+            for word, freq in sorted(doc_counter.items()):
                 f.write(f'{word}:{freq}\n')
 
         sys.stdout.write(f'\r[{i}] term freq: {url}'.ljust(120))
 
     unk_freq = 0
     with open('.cache/ref.dat', 'w') as f:
-        for word, freq in ref_counter.items():
+        for word, freq in sorted(ref_counter.items()):
             if freq < 10:
                 unk_freq += freq
             else:
@@ -88,19 +84,20 @@ def build_unigrams() -> None:
     vocab = load_id_map('vocab.txt')
 
     ref = build_unigram('.cache/ref.dat', vocab, [0.0] * len(vocab))
-    with open('model/ref.dat', 'w') as f:
-        f.write(''.join([repr(p).ljust(22) for p in ref]))
+    with open('model/ref.dat', 'wb') as f:
+        for p in ref:
+            f.write(struct.pack('d', p))
 
     for i, (url, id) in enumerate(doc_ids.items()):
         unigram = build_unigram(f'.cache/{doc_ids[url]}.dat', vocab, ref)
-        with open(f'model/{id}.dat', 'w') as f:
-            f.write(''.join([repr(p).ljust(22) for p in unigram]))
+        with open(f'model/{id}.dat', 'wb') as f:
+            for p in unigram:
+                f.write(struct.pack('d', p))
         sys.stdout.write(f'\r[{i}] unigram: {url}'.ljust(120))
     sys.stdout.write('\n')
 
 
 if __name__ == "__main__":
     # build_stats()
-    # build_vocab()
-    # build_unigrams()
-    pass
+    build_vocab()
+    build_unigrams()
