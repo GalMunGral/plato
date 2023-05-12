@@ -5,28 +5,26 @@ A very naive search engine for [Stanford Encyclopedia of Philosophy](https://pla
 ```
 python3 query.py
 
-Please enter: humans are ends in themselves
-results: 1232
+Please enter: natural language semantics
 
-https://plato.stanford.edu/entries/kant/ (7.6926)
-https://plato.stanford.edu/entries/kant-moral/ (7.7625)
-https://plato.stanford.edu/entries/social-institutions/ (7.7698)
-https://plato.stanford.edu/entries/respect/ (7.7705)
-https://plato.stanford.edu/entries/spinoza-psychological/ (7.8093)
-https://plato.stanford.edu/entries/practical-reason/ (7.8743)
-https://plato.stanford.edu/entries/antonio-rosmini/ (7.8934)
-https://plato.stanford.edu/entries/human-nature/ (7.8937)
-https://plato.stanford.edu/entries/dewey-moral/ (7.8948)
-https://plato.stanford.edu/entries/practical-reason-med/ (7.9006)
-https://plato.stanford.edu/entries/ludwig-feuerbach/ (7.9138)
-https://plato.stanford.edu/entries/hegel-aesthetics/ (7.942)
-https://plato.stanford.edu/entries/heaven-hell/ (7.9638)
-https://plato.stanford.edu/entries/religion-morality/ (7.9755)
-https://plato.stanford.edu/entries/moral-animal/ (7.9929)
-https://plato.stanford.edu/entries/moral-arguments-god/ (7.9951)
-https://plato.stanford.edu/entries/kant-social-political/ (7.9978)
-https://plato.stanford.edu/entries/episteme-techne/ (8.0005)
-https://plato.stanford.edu/entries/cosmopolitanism/ (8.0048)
-https://plato.stanford.edu/entries/aquinas/ (8.0523)
-
+https://plato.stanford.edu/entries/natural-language-ontology/ (28.6821)
+https://plato.stanford.edu/entries/montague-semantics/ (31.5394)
+https://plato.stanford.edu/entries/word-meaning/ (32.6054)
+https://plato.stanford.edu/entries/information-semantic/ (32.8631)
+https://plato.stanford.edu/entries/compositionality/ (32.8701)
+https://plato.stanford.edu/entries/meaning/ (33.0329)
+https://plato.stanford.edu/entries/situations-semantics/ (33.0506)
+https://plato.stanford.edu/entries/idiolects/ (33.147)
+https://plato.stanford.edu/entries/tarski-truth/ (33.172)
+https://plato.stanford.edu/entries/linguistics/ (33.3995)
+https://plato.stanford.edu/entries/generalized-quantifiers/ (33.4796)
+https://plato.stanford.edu/entries/dynamic-semantics/ (33.4993)
+https://plato.stanford.edu/entries/games-abstraction/ (33.4996)
+https://plato.stanford.edu/entries/logic-if/ (33.5564)
+https://plato.stanford.edu/entries/computational-linguistics/ (33.6067)
+https://plato.stanford.edu/entries/proof-theoretic-semantics/ (33.6346)
+https://plato.stanford.edu/entries/logic-algebraic-propositional/ (33.703)
+https://plato.stanford.edu/entries/language-thought/ (33.7869)
+https://plato.stanford.edu/entries/two-dimensional-semantics/ (34.0089)
+https://plato.stanford.edu/entries/logic-classical/ (34.0245)
 ```
