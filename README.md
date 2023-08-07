@@ -1,7 +1,23 @@
 # plato
 
 A very naive search engine for [Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/index.html)
+## Query Likelihood Model with Jelinek-Mercer Smoothing
+The model can be derived from negative KL-divergence:
 
+$$\displaystyle\begin{align}
+rank(d, q) &:= -D_{KL}(P(X \mid Q = q) \parallel P(X \mid D = d)) \\
+&= -\sum_{w \in \mathcal{X}}P(X = w \mid Q = q) \log\frac{P(X = w \mid Q = q)}{P(X = w \mid D = d)} \\
+&\equiv \sum_{w \in \mathcal{X}}P(X = w \mid Q = q) \log {P(X = w \mid D = d)} \\
+&\approx \sum_{w \in \mathcal{X}}\frac{c(w, q)}{\vert q \vert} \log \left[(1 - \lambda)\frac{c(w, d)}{\vert d \vert} + \lambda \frac{c(w, C)}{\vert C \vert}\right] \\
+&\equiv \sum_{w \in \mathcal{X}} c(w, q) \log \left[(1 - \lambda)\frac{c(w, d)}{\vert d \vert} + \lambda \frac{c(w, C)}{\vert C \vert}\right] \\
+&= \sum_{w \in \mathcal{X}} c(w, q) \log\left[\left(\frac{1 - \lambda}{\lambda}\frac{c(w, d) \vert C \vert}{c(w, C) \vert d \vert} + 1\right) \cdot \lambda \frac{c(w, C)}{\vert C \vert}\right] \\
+&= \sum_{w \in \mathcal{X}} c(w, q) \log\left(\frac{1 - \lambda}{\lambda}\frac{c(w, d) \vert C \vert}{c(w, C) \vert d \vert} + 1\right) + \sum_{w \in \mathcal{X}} c(w, q) \log\left(\lambda \frac{c(w, C)}{\vert C \vert}\right) \\
+&\equiv \sum_{w \in \mathcal{X}} c(w, q) \log\left(\frac{1 - \lambda}{\lambda}\frac{c(w, d) \vert C \vert}{c(w, C) \vert d \vert} + 1\right) \\
+\end{align}$$
+
+The $\displaystyle\frac{c(w, d)}{c(w, C) \vert d \vert}$ term corresponds to TF-IDF and document length normalization.
+
+## Example
 ```
 python3 query.py
 
